@@ -1,0 +1,91 @@
+@font-face {
+  font-family: "DM Sans";
+  src: url("DMSans-VariableFont_opsz,wght.ttf");
+  font-weight: 400 500;
+}
+
+:root {
+  --purple-100: hsl(254, 88%, 90%);
+  --purple-500: hsl(256, 67%, 59%);
+  --yellow-100: hsl(31, 66%, 93%);
+  --yellow-500: hsl(39, 100%, 71%);
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 7%);
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  font-family: "DM Sans", sans-serif;
+  font-size: 18px;
+  color: var(--black);
+  background: hsl(0, 0%, 96%);
+  padding: 1.5rem 1rem;
+}
+
+img { max-width: 100%; display: block; }
+
+h1, h2 { font-weight: 500; line-height: 1.1; }
+h1 { font-size: 4rem; }
+h2 { font-size: 2rem; margin-bottom: 1rem; }
+
+
+.bento {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 1010px;
+  margin: 0 auto;
+}
+
+.card {
+  border-radius: 12px;
+  padding: 2rem;
+  overflow: hidden;
+}
+
+/* colors */
+.card:nth-child(1) { background: var(--yellow-100); }
+.card:nth-child(2) { background: var(--yellow-500); }
+.card:nth-child(3) { background: var(--purple-500); color: var(--white); text-align: center; }
+.card:nth-child(4) { background: var(--purple-100); }
+.card:nth-child(5) { background: var(--yellow-500); }
+.card:nth-child(6) { background: var(--white); }
+.card:nth-child(7) { background: var(--purple-500); color: var(--white); }
+.card:nth-child(8) { background: var(--white); }
+
+/* mobile order: the two left-column cards go to the bottom */
+.card:nth-child(3) { order: 1; }
+.card:nth-child(6) { order: 2; }
+.card:nth-child(5) { order: 3; }
+.card:nth-child(4) { order: 4; }
+.card:nth-child(7) { order: 5; }
+.card:nth-child(8) { order: 6; }
+.card:nth-child(1) { order: 7; }
+.card:nth-child(2) { order: 8; }
+
+@media (min-width: 900px) {
+  body { padding: 4.5rem 2rem; }
+
+  .bento {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      "create hero   hero     schedule"
+      "create hero   hero     schedule"
+      "create manage maintain schedule"
+      "write  manage maintain schedule"
+      "write  stat   grow     grow"
+      "write  stat   grow     grow";
+  }
+
+  .card:nth-child(1) { grid-area: create; }
+  .card:nth-child(2) { grid-area: write; }
+  .card:nth-child(3) { grid-area: hero; }
+  .card:nth-child(4) { grid-area: schedule; }
+  .card:nth-child(5) { grid-area: maintain; }
+  .card:nth-child(6) { grid-area: manage; }
+  .card:nth-child(7) { grid-area: grow; }
+  .card:nth-child(8) { grid-area: stat; }
+
+  h1 { font-size: 3.5rem; }
+  h2 { font-size: 1.75rem; }
+}
